@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, ChangeEvent } from "react";
+import Link from "next/link";
 
 export default function Home() {
   // State to hold the text input value
@@ -62,9 +63,9 @@ export default function Home() {
       <header>
         {/* Header section with site title and mode toggle */}
         <div className="container py-4 border-b flex items-center justify-between">
-          <a href="/" className="text-2xl font-bold font-serif">
-            TextUtils
-          </a>
+          <Link href="/" className="text-2xl font-bold font-serif">
+            TextCraft
+          </Link>
           <ModeToggle />
         </div>
       </header>
@@ -80,7 +81,7 @@ export default function Home() {
 
             {/* Hero Description */}
             <p className="leading-7 mt-6 max-w-[80ch]">
-              Edit, format, and analyze text quickly with TextUtils. Simplify
+              Edit, format, and analyze text quickly with TextCraft. Simplify
               your text management and boost productivity with ease.
             </p>
           </div>
