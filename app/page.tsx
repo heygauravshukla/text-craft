@@ -1,113 +1,184 @@
-import Image from "next/image";
+"use client";
+
+import { ModeToggle } from "@/components/mode-toggle";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  CaseLower,
+  CaseUpper,
+  Copy,
+  RemoveFormatting,
+  Trash2,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useState, ChangeEvent } from "react";
 
 export default function Home() {
+  // State to hold the text input value
+  const [text, setText] = useState<string>("");
+
+  // Handle changes to the text area input
+  const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setText(event.target.value);
+  };
+
+  // Copy text to the clipboard with error handling
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      // Optionally notify user of success
+    } catch (error) {
+      console.error("Failed to copy text:", error);
+      // Optionally notify user of error
+    }
+  };
+
+  // Convert text to lowercase
+  const handleLowerCaseClick = () => {
+    setText(text.toLowerCase());
+  };
+
+  // Convert text to uppercase
+  const handleUpperCaseClick = () => {
+    setText(text.toUpperCase());
+  };
+
+  // Remove extra spaces from the text
+  const handleExtraSpaces = () => {
+    const newText = text.split(/\s+/).filter(Boolean).join(" ");
+    setText(newText);
+  };
+
+  // Clear the text area
+  const handleClearClick = () => {
+    setText("");
+  };
+
+  // Calculate the word count
+  const wordCount = text.split(/\s+/).filter(Boolean).length;
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
+    <>
+      <header>
+        {/* Header section with site title and mode toggle */}
+        <div className="container py-4 border-b flex items-center justify-between">
+          <a href="/" className="text-2xl font-bold font-serif">
+            TextUtils
           </a>
+          <ModeToggle />
         </div>
-      </div>
+      </header>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <main>
+        {/* Hero section */}
+        <section className="my-12">
+          <div className="container grid place-content-center text-center">
+            {/* Hero Heading */}
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+              Transform your text effortlessly!
+            </h1>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+            {/* Hero Description */}
+            <p className="leading-7 mt-6 max-w-[80ch]">
+              Edit, format, and analyze text quickly with TextUtils. Simplify
+              your text management and boost productivity with ease.
+            </p>
+          </div>
+        </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        {/* Editor section */}
+        <section className="my-12">
+          <div className="container grid gap-4">
+            {/* Text area for user input */}
+            <div className="grid w-full gap-1.5">
+              <Label htmlFor="message" className="text-xl mb-2">
+                Your text
+              </Label>
+              <Textarea
+                placeholder="Type or paste your text here."
+                id="message"
+                value={text}
+                onChange={handleOnChange}
+                rows={8}
+                className="resize-y" // Allow vertical resizing
+              />
+            </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+            {/* Action buttons for text manipulation */}
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant="default"
+                disabled={text.length === 0}
+                onClick={handleCopy}
+                aria-label="Copy text to clipboard"
+              >
+                <Copy className="mr-2 h-4 w-4" /> Copy
+              </Button>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+              <Button
+                variant="outline"
+                disabled={text.length === 0}
+                onClick={handleLowerCaseClick}
+                aria-label="Convert text to lowercase"
+              >
+                <CaseLower className="mr-2 h-4 w-4" /> Lowercase
+              </Button>
+
+              <Button
+                variant="outline"
+                disabled={text.length === 0}
+                onClick={handleUpperCaseClick}
+                aria-label="Convert text to uppercase"
+              >
+                <CaseUpper className="mr-2 h-4 w-4" /> Uppercase
+              </Button>
+
+              <Button
+                variant="outline"
+                disabled={text.length === 0}
+                onClick={handleExtraSpaces}
+                aria-label="Remove extra spaces"
+              >
+                <RemoveFormatting className="mr-2 h-4 w-4" /> Remove extra
+                spaces
+              </Button>
+
+              <Button
+                variant="outline"
+                disabled={text.length === 0}
+                onClick={handleClearClick}
+                aria-label="Clear text"
+              >
+                <Trash2 className="mr-2 h-4 w-4" /> Clear
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Summary section */}
+        <section className="my-12">
+          <div className="container grid gap-4">
+            {/* Text summary showing word and character count */}
+            <div>
+              <p className="text-xl">Text Summary</p>
+              <p className="text-sm text-muted-foreground">
+                {wordCount} words and {text.length} characters
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {Math.round(0.008 * wordCount * 100) / 100} minutes read
+              </p>
+            </div>
+
+            {/* Text preview displaying current text or a placeholder */}
+            <div>
+              <p className="text-xl">Text Preview</p>
+              <p className="text-sm text-muted-foreground">
+                {text.length > 0 ? text : "Nothing to preview!"}
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
