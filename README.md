@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TextCraft
 
-## Getting Started
+TextCraft is a modern online text editor built with Next.js, Tailwind CSS, and Shadcn/UI. It allows users to easily edit, format, and analyze their text with various tools.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Text Manipulation:** Convert text to lowercase or uppercase, remove extra spaces, and clear text.
+- **Clipboard Integration:** Copy text to clipboard with ease.
+- **Text Summary:** Displays word and character counts, and estimated reading time.
+- **Text Preview:** View a real-time preview of your text.
+- **Mode Toggle:** Switch between light and dark themes.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js:** A React framework for building server-rendered and statically generated web applications.
+- **Tailwind CSS:** A utility-first CSS framework for creating custom designs without leaving your HTML.
+- **Shadcn/UI:** A set of accessible and customizable UI components for React.
+- **Radix UI:** Low-level UI components for building design systems and complex UI.
+- **Lucide:** A collection of open-source icons.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Installation
 
-## Learn More
+To get started with TextCraft, follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git clone https://github.com/heygauravshukla/text-craft.git
+   cd text-craft
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. **Install dependencies:**
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Run the development server:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser and visit:**
+
+   ```
+   http://localhost:3000
+   ```
+
+## Usage
+
+### Home Page
+
+The homepage contains the following sections:
+
+- **Header:** Displays the site title "TextCraft" and a mode toggle button for switching themes.
+- **Hero Section:** Includes a heading and description of the application's capabilities.
+- **Editor Section:** Features a text area for input, along with action buttons to manipulate the text.
+- **Summary Section:** Shows the text summary, including word count, character count, and estimated reading time.
+
+### Editor Actions
+
+- **Copy:** Copy the text to the clipboard.
+- **Lowercase:** Convert the text to lowercase.
+- **Uppercase:** Convert the text to uppercase.
+- **Remove Extra Spaces:** Remove unnecessary spaces from the text.
+- **Clear:** Clear the text area.
+
+## Configuration
+
+### Environment Variables
+
+No special environment variables are required for this project. However, you can configure additional settings in the `.env` file if needed.
+
+### Tailwind CSS Configuration
+
+Tailwind CSS is configured in the `tailwind.config.js` file. You can customize your theme and add additional plugins as needed.
+
+## Contributing
+
+If you'd like to contribute to TextCraft, please follow these guidelines:
+
+1. **Fork the repository.**
+2. **Create a new branch for your feature or bug fix.**
+3. **Commit your changes and push to your fork.**
+4. **Submit a pull request.**
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+- **Next.js** for providing an excellent framework for building React applications.
+- **Tailwind CSS** for making it easy to create beautiful designs.
+- **Shadcn/UI** for the accessible and customizable UI components.
+- **Radix UI** for the robust low-level components.
+- **Lucide** for the icons used in the application.
